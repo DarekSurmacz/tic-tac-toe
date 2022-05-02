@@ -1,17 +1,17 @@
 package com.dariuszsurmacz.tictactoe;
 
-import javafx.scene.control.Button;
-
 public class Board {
-//na razie board jest w klasie main
-    private Button[][] board = new Button[3][3];
 
-    public Board(Button[][] board) {
-        this.board = board;
-    }
+    public Tile[][] fields = new Tile[3][3];
 
-
-    public Button[][] getBoard() {
-        return board;
+    public Board(Ai ai) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Tile tile = new Tile(FieldValue.EMPTY, ai);
+                tile.setTranslateX(i * 200);
+                tile.setTranslateY(j * 200);
+                fields[i][j] = tile;
+            }
+        }
     }
 }
