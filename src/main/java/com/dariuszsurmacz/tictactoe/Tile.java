@@ -1,5 +1,9 @@
 package com.dariuszsurmacz.tictactoe;
 
+import com.dariuszsurmacz.tictactoe.logic.Ai;
+import com.dariuszsurmacz.tictactoe.logic.BoardIndex;
+import com.dariuszsurmacz.tictactoe.logic.LogicBoardConverter;
+import com.dariuszsurmacz.tictactoe.logic.Player;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
@@ -34,7 +38,7 @@ public class Tile extends StackPane {
         this.fieldValue = fieldValue;
         this.aiAlgorithm = aiAlgorithm;
 
-        Rectangle rectangle = new Rectangle(); //siatka
+        Rectangle rectangle = new Rectangle();
         rectangle.setHeight(200);
         rectangle.setWidth(200);
         rectangle.setFill(null);
@@ -72,7 +76,7 @@ public class Tile extends StackPane {
                 BoardIndex boardIndex = this.aiAlgorithm.calculateMove(boardToLogicBoardConverter.convert
                         (TicTacToe.board, FieldValue.CROSS), Player.COMPUTER);
 
-                Tile tile = TicTacToe.board.fields[boardIndex.getI()][boardIndex.getJ()];
+                Tile tile = TicTacToe.board.fields[boardIndex.getRow()][boardIndex.getColumn()];
                 Rectangle node = (Rectangle) tile.getChildren().get(0);
                 tile.setFieldValue(FieldValue.CIRCLE);
                 node.setFill(new ImagePattern(circle));

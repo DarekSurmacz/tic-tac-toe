@@ -1,51 +1,53 @@
-package com.dariuszsurmacz.tictactoe;
+package com.dariuszsurmacz.tictactoe.logic;
+
+import static com.dariuszsurmacz.tictactoe.Board.GRID_SIZE;
 
 public class LogicBoard {
 
     private Player grid[][];
 
     public LogicBoard() {
-        grid = new Player[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                grid[i][j] = Player.BLANK;
+        grid = new Player[GRID_SIZE][GRID_SIZE];
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int column = 0; column < GRID_SIZE; column++) {
+                grid[row][column] = Player.BLANK;
             }
         }
     }
 
-    public boolean placeSymbol(int i, int j, Player player) {
-        if (grid[i][j] != Player.BLANK)
+    public boolean placeSymbol(int row, int column, Player player) {
+        if (grid[row][column] != Player.BLANK)
             return false;
 
-        grid[i][j] = player;
+        grid[row][column] = player;
         return true;
     }
 
-    public Player getSymbol(int i, int j) {
-        return grid[i][j];
+    public Player getSymbol(int row, int column) {
+        return grid[row][column];
     }
 
     public GameState calculateGameState() {
 
-        for (int j = 0; j < 3; j++) {
-            if (grid[0][j] == grid[1][j]
-                    && grid[0][j] == grid[2][j]) {
-                if (grid[0][j] == Player.COMPUTER) {
+        for (int column = 0; column < GRID_SIZE; column++) {
+            if (grid[0][column] == grid[1][column]
+                    && grid[0][column] == grid[2][column]) {
+                if (grid[0][column] == Player.COMPUTER) {
                     return GameState.COMPUTER_WIN;
 
-                } else if (grid[0][j] == Player.PLAYER) {
+                } else if (grid[0][column] == Player.PLAYER) {
                     return GameState.PLAYER_WIN;
                 }
             }
         }
 
-        for (int i = 0; i < 3; i++) {
-            if (grid[i][0] == grid[i][1]
-                    && grid[i][0] == grid[i][2]) {
-                if (grid[i][0] == Player.COMPUTER) {
+        for (int row = 0; row < GRID_SIZE; row++) {
+            if (grid[row][0] == grid[row][1]
+                    && grid[row][0] == grid[row][2]) {
+                if (grid[row][0] == Player.COMPUTER) {
                     return GameState.COMPUTER_WIN;
 
-                } else if (grid[i][0] == Player.PLAYER) {
+                } else if (grid[row][0] == Player.PLAYER) {
                     return GameState.PLAYER_WIN;
                 }
             }
@@ -72,9 +74,9 @@ public class LogicBoard {
         }
 
         boolean isEmpty = false;
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
-                if (grid[x][y] == Player.BLANK) {
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int column = 0; column < GRID_SIZE; column++) {
+                if (grid[row][column] == Player.BLANK) {
                     isEmpty = true;
                 }
             }

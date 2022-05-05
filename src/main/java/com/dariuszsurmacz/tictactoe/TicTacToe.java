@@ -1,5 +1,7 @@
 package com.dariuszsurmacz.tictactoe;;
 
+import com.dariuszsurmacz.tictactoe.logic.EasyComputer;
+import com.dariuszsurmacz.tictactoe.logic.MediumComputer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
 public class TicTacToe extends Application {
 
     private static Image back = new Image("file:src/main/resources/background.gif");
-    public static Board board = new Board(new MediumComputer());
+    public static Board board = new Board(new EasyComputer());
     public static boolean turnX = true;
     public static boolean possibleMove = true;
     public static Label label = new Label();
@@ -41,7 +43,7 @@ public class TicTacToe extends Application {
         root.setBackground(background);
 
         Button easyLevel = new Button();
-        easyLevel.setText("vs. computer");
+        easyLevel.setText("vs. computer easy");
         easyLevel.setFont(new Font("Arial", 15));
         easyLevel.setLayoutX(0);
         easyLevel.setLayoutY(600);
@@ -52,8 +54,24 @@ public class TicTacToe extends Application {
             playerX.setCount(0);
             counter.setText("X  " + playerX.getCount()
                     + ":" + playerO.getCount() + "  O");
-            vsWho.setText("player vs. computer");
-            State.gameReset();
+            vsWho.setText("player vs. computer easy (LMB for X)");
+            State.gameReset(new EasyComputer());
+        });
+
+                Button mediumLevel = new Button();
+        mediumLevel.setText("vs. computer medium");
+        mediumLevel.setFont(new Font("Arial", 15));
+        mediumLevel.setLayoutX(0);
+        mediumLevel.setLayoutY(700);
+        mediumLevel.setPrefSize(200, 50);
+        mediumLevel.setOnAction(action -> {
+            vsComputer = true;
+            playerO.setCount(0);
+            playerX.setCount(0);
+            counter.setText("X  " + playerX.getCount()
+                    + ":" + playerO.getCount() + "  O");
+            vsWho.setText("player vs. computer medium (LMB for X)");
+            State.gameReset(new MediumComputer());
         });
 
         Button playAgain = new Button();
@@ -79,7 +97,7 @@ public class TicTacToe extends Application {
             playerO.setCount(0);
             counter.setText("X  " + playerX.getCount()
                     + ":" + playerO.getCount() + "  O");
-            vsWho.setText("player vs. player");
+            vsWho.setText("player vs. player (LMB for X, RMB for O)");
             State.gameReset(null);
         });
 
@@ -97,22 +115,22 @@ public class TicTacToe extends Application {
         label.setTextFill(Color.BLACK);
         label.setFont(new Font("Arial", 20));
         label.layoutXProperty().bind(root.widthProperty().subtract(label.widthProperty()).divide(2));
-        label.setLayoutY(605);
+        label.setLayoutY(610);
 
         counter.setText("X  " + playerX.getCount() + ":" + playerO.getCount() + "  O");
         counter.setTextFill(Color.BLACK);
         counter.setFont(new Font("Arial", 20));
         counter.layoutXProperty().bind(root.widthProperty().subtract(counter.widthProperty()).divide(2));
-        counter.setLayoutY(638);
+        counter.setLayoutY(640);
 
-        vsWho.setText("player vs. computer");
+        vsWho.setText("player vs. computer easy (LMB for X)");
         vsWho.setTextFill(Color.BLACK);
         vsWho.setFont(new Font("Arial", 20));
         vsWho.layoutXProperty().bind(root.widthProperty().subtract(vsWho.widthProperty()).divide(2));
-        vsWho.setLayoutY(671);
+        vsWho.setLayoutY(670);
 
         root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));
-        root.getChildren().addAll(quit, vsPlay, /*mediumLevel,*/ easyLevel, playAgain, label, counter, vsWho);
+        root.getChildren().addAll(quit, vsPlay, mediumLevel, easyLevel, playAgain, label, counter, vsWho);
         return root;
     }
 

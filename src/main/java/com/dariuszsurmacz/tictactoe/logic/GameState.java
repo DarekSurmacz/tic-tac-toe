@@ -1,4 +1,4 @@
-package com.dariuszsurmacz.tictactoe;
+package com.dariuszsurmacz.tictactoe.logic;
 
 public enum GameState {
     COMPUTER_WIN,

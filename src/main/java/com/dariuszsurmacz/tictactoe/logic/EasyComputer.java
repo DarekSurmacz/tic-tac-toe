@@ -1,6 +1,7 @@
-package com.dariuszsurmacz.tictactoe;
+package com.dariuszsurmacz.tictactoe.logic;
 
 import java.util.Random;
+import static com.dariuszsurmacz.tictactoe.Board.GRID_SIZE;
 
 public class EasyComputer implements Ai {
 
@@ -16,8 +17,8 @@ public class EasyComputer implements Ai {
             return null;
         }
         while (true) {
-            int randomRow = random.nextInt(3);
-            int randomColumn = random.nextInt(3);
+            int randomRow = random.nextInt(GRID_SIZE);
+            int randomColumn = random.nextInt(GRID_SIZE);
             if (Player.BLANK == logicBoard.getSymbol(randomRow, randomColumn)) {
                 return new BoardIndex(randomRow, randomColumn);
             }

@@ -1,13 +1,19 @@
-package com.dariuszsurmacz.tictactoe;
+package com.dariuszsurmacz.tictactoe.logic;
+
+import com.dariuszsurmacz.tictactoe.Board;
+import com.dariuszsurmacz.tictactoe.FieldValue;
+import com.dariuszsurmacz.tictactoe.Tile;
+
+import static com.dariuszsurmacz.tictactoe.Board.GRID_SIZE;
 
 public class LogicBoardConverter {
 
     public LogicBoard convert(Board board, FieldValue humanPlayer) {
         LogicBoard logicBoard = new LogicBoard();
-        for (int i = 0; i < 3; i++) {
+        for (int row = 0; row < GRID_SIZE; row++) {
 
-            for (int j = 0; j < 3; j++) {
-                Tile currentTile = board.fields[i][j];
+            for (int column = 0; column < GRID_SIZE; column++) {
+                Tile currentTile = board.fields[row][column];
                 Player convertedPlayer;
 
                 if (currentTile.getFieldValue() == humanPlayer) {
@@ -20,7 +26,7 @@ public class LogicBoardConverter {
                     convertedPlayer = Player.COMPUTER;
                 }
 
-                logicBoard.placeSymbol(i, j, convertedPlayer);
+                logicBoard.placeSymbol(row, column, convertedPlayer);
             }
         }
         return logicBoard;

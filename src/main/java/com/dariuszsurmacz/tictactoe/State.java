@@ -1,7 +1,10 @@
 package com.dariuszsurmacz.tictactoe;
 
+import com.dariuszsurmacz.tictactoe.logic.Ai;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
+import static com.dariuszsurmacz.tictactoe.Board.GRID_SIZE;
 
 public class State {
 
@@ -10,14 +13,14 @@ public class State {
     }
 
     public static void gameReset(Ai aiAlgorithm) {
-        Tile[][] fields = TicTacToe.board.fields;
+        Tile[][] fields = TicTacToe.board.fields; //!!!!!!!!
 
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3; x++) {
-                fields[x][y].setFieldValue(FieldValue.EMPTY);
+        for (int column = 0; column < GRID_SIZE; column++) {
+            for (int row = 0; row < GRID_SIZE; row++) {
+                fields[row][column].setFieldValue(FieldValue.EMPTY);
                 if(aiAlgorithm!=null){
-                    fields[x][y].setAiAlgorithm(aiAlgorithm);}
-                Rectangle node = (Rectangle) fields[x][y].getChildren().get(0);
+                    fields[row][column].setAiAlgorithm(aiAlgorithm);}
+                Rectangle node = (Rectangle) fields[row][column].getChildren().get(0);
                 node.setFill(null);
             }
         }
@@ -29,27 +32,27 @@ public class State {
     }
 
     public static Score gameResult() {
-        Tile[][] fields = TicTacToe.board.fields;
+        Tile[][] fields = TicTacToe.board.fields;   //!!!!!!!
 
         //poziom
-        for (int y = 0; y < 3; y++) {
-            if (fields[0][y].getFieldValue() == fields[1][y].getFieldValue()
-                    && fields[0][y].getFieldValue() == fields[2][y].getFieldValue()) {
-                if (fields[0][y].getFieldValue() == FieldValue.CIRCLE) {
+        for (int column = 0; column < GRID_SIZE; column++) {
+            if (fields[0][column].getFieldValue() == fields[1][column].getFieldValue()
+                    && fields[0][column].getFieldValue() == fields[2][column].getFieldValue()) {
+                if (fields[0][column].getFieldValue() == FieldValue.CIRCLE) {
                     return Score.O_WIN;
-                } else if (fields[0][y].getFieldValue() == FieldValue.CROSS) {
+                } else if (fields[0][column].getFieldValue() == FieldValue.CROSS) {
                     return Score.X_WIN;
                 }
             }
         }
         //pion
-        for (int x = 0; x < 3; x++) {
-            if (fields[x][0].getFieldValue() == fields[x][1]
+        for (int row = 0; row < GRID_SIZE; row++) {
+            if (fields[row][0].getFieldValue() == fields[row][1]
                     .getFieldValue()
-                    && fields[x][0].getFieldValue() == fields[x][2].getFieldValue()) {
-                if (fields[x][0].getFieldValue() == FieldValue.CIRCLE) {
+                    && fields[row][0].getFieldValue() == fields[row][2].getFieldValue()) {
+                if (fields[row][0].getFieldValue() == FieldValue.CIRCLE) {
                     return Score.O_WIN;
-                } else if (fields[x][0].getFieldValue() == FieldValue.CROSS) {
+                } else if (fields[row][0].getFieldValue() == FieldValue.CROSS) {
                     return Score.X_WIN;
                 }
             }
@@ -74,9 +77,9 @@ public class State {
         }
 
         boolean isEmpty = false;
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
-                if (fields[x][y].getFieldValue() == FieldValue.EMPTY) {
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int column = 0; column < GRID_SIZE; column++) {
+                if (fields[row][column].getFieldValue() == FieldValue.EMPTY) {
                     isEmpty = true;
                 }
             }

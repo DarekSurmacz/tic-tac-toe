@@ -1,4 +1,4 @@
-package com.dariuszsurmacz.tictactoe;
+package com.dariuszsurmacz.tictactoe.logic;
 
 import java.util.HashMap;
 import java.util.Map;

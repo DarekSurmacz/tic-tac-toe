@@ -1,16 +1,19 @@
 package com.dariuszsurmacz.tictactoe;
 
+import com.dariuszsurmacz.tictactoe.logic.Ai;
+
 public class Board {
 
-    public Tile[][] fields = new Tile[3][3];
+    public static final int GRID_SIZE = 3;
+    public Tile[][] fields = new Tile[GRID_SIZE][GRID_SIZE];
 
     public Board(Ai ai) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int column = 0; column < GRID_SIZE; column++) {
                 Tile tile = new Tile(FieldValue.EMPTY, ai);
-                tile.setTranslateX(i * 200);
-                tile.setTranslateY(j * 200);
-                fields[i][j] = tile;
+                tile.setTranslateX(row * 200);
+                tile.setTranslateY(column * 200);
+                fields[row][column] = tile;
             }
         }
     }
