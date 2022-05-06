@@ -5,7 +5,7 @@ import static com.dariuszsurmacz.tictactoe.Board.GRID_SIZE;
 
 public class EasyComputer implements Ai {
 
-    private Random random;
+    private final Random random;
 
     public EasyComputer() {
         random = new Random();

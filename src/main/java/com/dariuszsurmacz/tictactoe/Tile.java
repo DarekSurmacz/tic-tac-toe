@@ -14,10 +14,8 @@ import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane {
 
-
-
-    private static Image cross = new Image("file:src/main/resources/x.png");
-    private static Image circle = new Image("file:src/main/resources/o.png");
+    private static final Image cross = new Image("file:src/main/resources/x.png");
+    private static final Image circle = new Image("file:src/main/resources/o.png");
     private Ai aiAlgorithm;
     private FieldValue fieldValue;
 
@@ -27,14 +25,13 @@ public class Tile extends StackPane {
 
     public void setAiAlgorithm(Ai aiAlgorithm) {
         this.aiAlgorithm = aiAlgorithm;
-
     }
 
     public void setFieldValue(FieldValue fieldValue) {
         this.fieldValue = fieldValue;
     }
 
-    Tile(FieldValue fieldValue, Ai aiAlgorithm) {
+     Tile(FieldValue fieldValue, Ai aiAlgorithm) {
         this.fieldValue = fieldValue;
         this.aiAlgorithm = aiAlgorithm;
 
@@ -139,6 +136,6 @@ public class Tile extends StackPane {
                 TicTacToe.label.setText("O turn");
             }
         }
-        TicTacToe.label.setTextFill(Color.BLACK);
+//        TicTacToe.label.setTextFill(Color.BLACK);
     }
 }

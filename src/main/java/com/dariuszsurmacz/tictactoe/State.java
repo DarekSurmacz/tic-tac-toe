@@ -14,13 +14,14 @@ public class State {
     }
 
     public static void gameReset(Ai aiAlgorithm) {
-        Tile[][] fields = board.fields; //!!!!!!!!
+        Tile[][] fields = board.fields;
 
         for (int column = 0; column < GRID_SIZE; column++) {
             for (int row = 0; row < GRID_SIZE; row++) {
                 fields[row][column].setFieldValue(FieldValue.EMPTY);
-                if(aiAlgorithm!=null){
-                    fields[row][column].setAiAlgorithm(aiAlgorithm);}
+                if (aiAlgorithm != null) {
+                    fields[row][column].setAiAlgorithm(aiAlgorithm);
+                }
                 Rectangle node = (Rectangle) fields[row][column].getChildren().get(0);
                 node.setFill(null);
             }
@@ -34,7 +35,7 @@ public class State {
 
     public static Score gameResult() {
         Score result = null;
-        Tile[][] fields = board.fields;   //!!!!!!!
+        Tile[][] fields = board.fields;
 
         for (int column = 0; column < GRID_SIZE; column++) {
             if (fields[0][column].getFieldValue() == fields[1][column].getFieldValue()
@@ -84,9 +85,7 @@ public class State {
                         boolean isEmpty = false;
                         for (int row = 0; row < GRID_SIZE; row++) {
                             for (int column = 0; column < GRID_SIZE; column++) {
-                                if (fields[row][column].getFieldValue() == FieldValue.EMPTY) {
-                                    isEmpty = true;
-                                }
+                                if (fields[row][column].getFieldValue() == FieldValue.EMPTY) isEmpty = true;
                             }
                         }
                         if (!isEmpty) {

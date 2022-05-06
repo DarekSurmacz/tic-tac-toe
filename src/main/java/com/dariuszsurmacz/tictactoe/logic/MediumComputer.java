@@ -6,7 +6,7 @@ import static com.dariuszsurmacz.tictactoe.Board.GRID_SIZE;
 
 public class MediumComputer implements Ai {
 
-    private Random random;
+    private final Random random;
 
     public MediumComputer() {
         random = new Random();

@@ -4,7 +4,7 @@ import static com.dariuszsurmacz.tictactoe.Board.GRID_SIZE;
 
 public class LogicBoard {
 
-    private Player grid[][];
+    private final Player[][] grid;
 
     public LogicBoard() {
         grid = new Player[GRID_SIZE][GRID_SIZE];

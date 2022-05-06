@@ -15,6 +15,8 @@ public class Board {
                 tile.setTranslateY(column * 200);
                 fields[row][column] = tile;
             }
+
+
         }
     }
 }

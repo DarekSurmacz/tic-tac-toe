@@ -1,4 +1,4 @@
-package com.dariuszsurmacz.tictactoe;;
+package com.dariuszsurmacz.tictactoe;
 
 import com.dariuszsurmacz.tictactoe.logic.EasyComputer;
 import com.dariuszsurmacz.tictactoe.logic.MediumComputer;
@@ -6,21 +6,19 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.util.Arrays;
 import java.util.stream.Collectors;
-
+import static com.dariuszsurmacz.tictactoe.Buttons.*;
 
 public class TicTacToe extends Application {
 
-    private static Image back = new Image("file:src/main/resources/background.gif");
+    private static final Image back = new Image("file:src/main/resources/background.gif");
     public static Board board = new Board(new EasyComputer());
     public static boolean turnX = true;
     public static boolean possibleMove = true;
@@ -46,13 +44,7 @@ public class TicTacToe extends Application {
         root.setPrefSize(600, 750);
         root.setBackground(background);
 
-        Button easyLevel = new Button();
-        easyLevel.setText("vs. computer easy");
-        easyLevel.setFont(new Font("Arial", 15));
-        easyLevel.setLayoutX(0);
-        easyLevel.setLayoutY(600);
-        easyLevel.setPrefSize(200, 50);
-        easyLevel.setOnAction(action -> {
+        Buttons.getEasyLevel().setOnAction(action -> {
             vsComputer = true;
             playerO.setCount(0);
             playerX.setCount(0);
@@ -62,13 +54,7 @@ public class TicTacToe extends Application {
             State.gameReset(new EasyComputer());
         });
 
-                Button mediumLevel = new Button();
-        mediumLevel.setText("vs. computer medium");
-        mediumLevel.setFont(new Font("Arial", 15));
-        mediumLevel.setLayoutX(0);
-        mediumLevel.setLayoutY(700);
-        mediumLevel.setPrefSize(200, 50);
-        mediumLevel.setOnAction(action -> {
+        Buttons.getMediumLevel().setOnAction(action -> {
             vsComputer = true;
             playerO.setCount(0);
             playerX.setCount(0);
@@ -78,24 +64,11 @@ public class TicTacToe extends Application {
             State.gameReset(new MediumComputer());
         });
 
-        Button playAgain = new Button();
-        playAgain.setText("New Game");
-        playAgain.setFont(new Font("Arial", 15));
-        playAgain.setLayoutX(200);
-        playAgain.setLayoutY(700);
-        playAgain.setPrefSize(200, 50);
-        playAgain.setOnAction(action -> {
+        getPlayAgain().setOnAction(action -> {
             State.gameReset();
         });
 
-        Button vsPlay = new Button();
-        vsPlay.setText("2 players");
-        vsPlay.setWrapText(true);
-        vsPlay.setFont(new Font("Arial", 15));
-        vsPlay.setLayoutX(400);
-        vsPlay.setLayoutY(600);
-        vsPlay.setPrefSize(200, 50);
-        vsPlay.setOnAction(action -> {
+        getVsPlay().setOnAction(action -> {
             vsComputer = false;
             playerX.setCount(0);
             playerO.setCount(0);
@@ -105,13 +78,7 @@ public class TicTacToe extends Application {
             State.gameReset(null);
         });
 
-        Button quit = new Button();
-        quit.setText("Quit");
-        quit.setFont(new Font("Arial", 15));
-        quit.setLayoutX(400);
-        quit.setLayoutY(700);
-        quit.setPrefSize(200, 50);
-        quit.setOnAction(action -> {
+        getQuit().setOnAction(action -> {
             Platform.exit();
         });
 
@@ -142,7 +109,6 @@ public class TicTacToe extends Application {
     public void start(Stage primaryStage) {
 
         Scene scene = new Scene(TicTacToe.createScene());
-
         primaryStage.setTitle("Tic-Tac-Toe (Xs and Os)");
         primaryStage.setScene(scene);
         primaryStage.show();
