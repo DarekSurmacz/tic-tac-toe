@@ -16,7 +16,7 @@ public class MediumComputer implements Ai {
         if (logicBoard.calculateGameState() != GameState.IN_PROGRESS) {
             return null;
         }
-        //if srodkowe pole puste to tam stawiaj znak
+
         while (true) if (Player.BLANK == logicBoard.getSymbol(1, 1)) {
             return new BoardIndex(1, 1);
         } else {

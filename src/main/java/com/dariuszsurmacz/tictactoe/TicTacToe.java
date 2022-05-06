@@ -31,7 +31,11 @@ public class TicTacToe extends Application {
     public static Counter playerO = new Counter(0);
     public static boolean vsComputer = true;
 
-    private static Parent createScene() {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    public static Parent createScene() {
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true,
                 true, true, false);
         BackgroundImage backgroundImage = new BackgroundImage(back, BackgroundRepeat.REPEAT,

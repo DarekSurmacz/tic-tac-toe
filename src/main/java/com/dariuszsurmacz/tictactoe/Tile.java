@@ -116,7 +116,6 @@ public class Tile extends StackPane {
                     + ":" + TicTacToe.playerO.getCount() + " O");
             TicTacToe.possibleMove = false;
             TicTacToe.label.setText("O wins");
-            TicTacToe.label.setTextFill(Color.BLACK);
             return;
         }
         if (score == Score.X_WIN) {
@@ -125,24 +124,21 @@ public class Tile extends StackPane {
                     + ":" + TicTacToe.playerO.getCount() + "  O");
             TicTacToe.possibleMove = false;
             TicTacToe.label.setText("X wins");
-            TicTacToe.label.setTextFill(Color.BLACK);
             return;
         }
         if (score == Score.DRAW) {
             TicTacToe.possibleMove = false;
             TicTacToe.label.setText("draw");
-            TicTacToe.label.setTextFill(Color.BLACK);
             return;
         }
         if (score == Score.IN_PROGRESS) {
             if (TicTacToe.turnX) {
                 TicTacToe.label.setText("X turn");
-                TicTacToe.label.setTextFill(Color.BLACK);
             }
             if (!TicTacToe.turnX) {
                 TicTacToe.label.setText("O turn");
-                TicTacToe.label.setTextFill(Color.BLACK);
             }
         }
+        TicTacToe.label.setTextFill(Color.BLACK);
     }
 }
