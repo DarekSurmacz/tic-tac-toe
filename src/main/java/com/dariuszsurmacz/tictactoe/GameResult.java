@@ -1,37 +1,9 @@
 package com.dariuszsurmacz.tictactoe;
 
-import com.dariuszsurmacz.tictactoe.logic.Ai;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-
 import static com.dariuszsurmacz.tictactoe.Board.GRID_SIZE;
-import static com.dariuszsurmacz.tictactoe.TicTacToe.*;
+import static com.dariuszsurmacz.tictactoe.TicTacToe.board;
 
-public class State {
-
-    public static void gameReset() {
-        gameReset(null);
-    }
-
-    public static void gameReset(Ai aiAlgorithm) {
-        Tile[][] fields = board.fields;
-
-        for (int column = 0; column < GRID_SIZE; column++) {
-            for (int row = 0; row < GRID_SIZE; row++) {
-                fields[row][column].setFieldValue(FieldValue.EMPTY);
-                if (aiAlgorithm != null) {
-                    fields[row][column].setAiAlgorithm(aiAlgorithm);
-                }
-                Rectangle node = (Rectangle) fields[row][column].getChildren().get(0);
-                node.setFill(null);
-            }
-        }
-
-        turnX = true;
-        possibleMove = true;
-        label.setText("X turn");
-        label.setTextFill(Color.BLACK);
-    }
+public class GameResult {
 
     public static Score gameResult() {
         Score result = null;
@@ -85,7 +57,10 @@ public class State {
                         boolean isEmpty = false;
                         for (int row = 0; row < GRID_SIZE; row++) {
                             for (int column = 0; column < GRID_SIZE; column++) {
-                                if (fields[row][column].getFieldValue() == FieldValue.EMPTY) isEmpty = true;
+                                if (fields[row][column].getFieldValue() == FieldValue.EMPTY) {
+                                    isEmpty = true;
+                                    break;
+                                }
                             }
                         }
                         if (!isEmpty) {

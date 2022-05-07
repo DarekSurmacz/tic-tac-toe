@@ -1,16 +1,13 @@
 package com.dariuszsurmacz.tictactoe.logic;
 
+import com.dariuszsurmacz.tictactoe.BoardIndex;
+
 import java.util.Random;
 import static com.dariuszsurmacz.tictactoe.Board.GRID_SIZE;
 
 public class EasyComputer implements Ai {
 
-    private final Random random;
-
-    public EasyComputer() {
-        random = new Random();
-    }
-
+    private final Random random = new Random();
 
     public BoardIndex calculateMove(LogicBoard logicBoard, Player player) {
         if (logicBoard.calculateGameState() != GameState.IN_PROGRESS) {

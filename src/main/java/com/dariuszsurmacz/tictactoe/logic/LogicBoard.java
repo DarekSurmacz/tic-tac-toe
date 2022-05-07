@@ -15,12 +15,11 @@ public class LogicBoard {
         }
     }
 
-    public boolean placeSymbol(int row, int column, Player player) {
+    public void placeSymbol(int row, int column, Player player) {
         if (grid[row][column] != Player.BLANK)
-            return false;
+            return;
 
         grid[row][column] = player;
-        return true;
     }
 
     public Player getSymbol(int row, int column) {
@@ -78,6 +77,7 @@ public class LogicBoard {
             for (int column = 0; column < GRID_SIZE; column++) {
                 if (grid[row][column] == Player.BLANK) {
                     isEmpty = true;
+                    break;
                 }
             }
         }

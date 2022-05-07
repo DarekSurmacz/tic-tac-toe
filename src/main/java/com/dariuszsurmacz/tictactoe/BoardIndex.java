@@ -1,4 +1,4 @@
-package com.dariuszsurmacz.tictactoe.logic;
+package com.dariuszsurmacz.tictactoe;
 
 public class BoardIndex {
 

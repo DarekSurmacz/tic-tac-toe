@@ -1,7 +1,6 @@
 package com.dariuszsurmacz.tictactoe;
 
 import com.dariuszsurmacz.tictactoe.logic.Ai;
-import com.dariuszsurmacz.tictactoe.logic.BoardIndex;
 import com.dariuszsurmacz.tictactoe.logic.LogicBoardConverter;
 import com.dariuszsurmacz.tictactoe.logic.Player;
 import javafx.geometry.Pos;
@@ -31,7 +30,7 @@ public class Tile extends StackPane {
         this.fieldValue = fieldValue;
     }
 
-     Tile(FieldValue fieldValue, Ai aiAlgorithm) {
+    Tile(FieldValue fieldValue, Ai aiAlgorithm) {
         this.fieldValue = fieldValue;
         this.aiAlgorithm = aiAlgorithm;
 
@@ -105,7 +104,7 @@ public class Tile extends StackPane {
     }
 
     public void checkState() {
-        Score score = State.gameResult();
+        Score score = GameResult.gameResult();
         System.out.println(score);
         if (score == Score.O_WIN) {
             TicTacToe.playerO.setCount(TicTacToe.playerO.getCount() + 1);

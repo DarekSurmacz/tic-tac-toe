@@ -4,6 +4,4 @@ public enum Player {
     BLANK,
     COMPUTER,
     PLAYER
-
-
 }

@@ -12,8 +12,10 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
 import static com.dariuszsurmacz.tictactoe.Buttons.*;
 
 public class TicTacToe extends Application {
@@ -51,7 +53,7 @@ public class TicTacToe extends Application {
             counter.setText("X  " + playerX.getCount()
                     + ":" + playerO.getCount() + "  O");
             vsWho.setText("player vs. computer easy (LMB for X)");
-            State.gameReset(new EasyComputer());
+            GameReset.gameReset(new EasyComputer());
         });
 
         Buttons.getMediumLevel().setOnAction(action -> {
@@ -61,12 +63,10 @@ public class TicTacToe extends Application {
             counter.setText("X  " + playerX.getCount()
                     + ":" + playerO.getCount() + "  O");
             vsWho.setText("player vs. computer medium (LMB for X)");
-            State.gameReset(new MediumComputer());
+            GameReset.gameReset(new MediumComputer());
         });
 
-        getPlayAgain().setOnAction(action -> {
-            State.gameReset();
-        });
+        getPlayAgain().setOnAction(action -> GameReset.gameReset());
 
         getVsPlay().setOnAction(action -> {
             vsComputer = false;
@@ -75,12 +75,10 @@ public class TicTacToe extends Application {
             counter.setText("X  " + playerX.getCount()
                     + ":" + playerO.getCount() + "  O");
             vsWho.setText("player vs. player (LMB for X, RMB for O)");
-            State.gameReset(null);
+            GameReset.gameReset(null);
         });
 
-        getQuit().setOnAction(action -> {
-            Platform.exit();
-        });
+        getQuit().setOnAction(action -> Platform.exit());
 
         label.setText("X turn");
         label.setTextFill(Color.BLACK);
