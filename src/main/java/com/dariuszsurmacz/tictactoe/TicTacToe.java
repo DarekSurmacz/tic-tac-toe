@@ -46,28 +46,24 @@ public class TicTacToe extends Application {
         root.setPrefSize(600, 750);
         root.setBackground(background);
 
-        Buttons.getEasyLevel().setOnAction(action -> {
-            vsComputer = true;
-            playerO.setCount(0);
-            playerX.setCount(0);
-            counter.setText("X  " + playerX.getCount()
-                    + ":" + playerO.getCount() + "  O");
-            vsWho.setText("player vs. computer easy (LMB for X)");
-            GameReset.gameReset(new EasyComputer());
-        });
+        easyComputerPlay();
+        mediumComputerPlay();
+        playerVsPlayerPlay();
 
-        Buttons.getMediumLevel().setOnAction(action -> {
-            vsComputer = true;
-            playerO.setCount(0);
-            playerX.setCount(0);
-            counter.setText("X  " + playerX.getCount()
-                    + ":" + playerO.getCount() + "  O");
-            vsWho.setText("player vs. computer medium (LMB for X)");
-            GameReset.gameReset(new MediumComputer());
-        });
-
+        counting(root);
         getPlayAgain().setOnAction(action -> GameReset.gameReset());
+        getQuit().setOnAction(action -> Platform.exit());
 
+        startLabel(label, "X turn", root, 610);
+
+        startLabel(vsWho, "player vs. computer easy (LMB for X)", root, 670);
+
+        root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));
+        root.getChildren().addAll(quit, vsPlay, mediumLevel, easyLevel, playAgain, label, counter, vsWho);
+        return root;
+    }
+
+    private static void playerVsPlayerPlay() {
         getVsPlay().setOnAction(action -> {
             vsComputer = false;
             playerX.setCount(0);
@@ -77,30 +73,42 @@ public class TicTacToe extends Application {
             vsWho.setText("player vs. player (LMB for X, RMB for O)");
             GameReset.gameReset(null);
         });
+    }
 
-        getQuit().setOnAction(action -> Platform.exit());
+    private static void mediumComputerPlay() {
+        getMediumLevel().setOnAction(action -> {
+            vsComputer = true;
+            playerO.setCount(0);
+            playerX.setCount(0);
+            counter.setText("X  " + playerX.getCount()
+                    + ":" + playerO.getCount() + "  O");
+            vsWho.setText("player vs. computer medium (LMB for X)");
+            GameReset.gameReset(new MediumComputer());
+        });
+    }
 
-        label.setText("X turn");
-        label.setTextFill(Color.BLACK);
-        label.setFont(new Font("Arial", 20));
-        label.layoutXProperty().bind(root.widthProperty().subtract(label.widthProperty()).divide(2));
-        label.setLayoutY(610);
+    private static void easyComputerPlay() {
+        getEasyLevel().setOnAction(action -> {
+            vsComputer = true;
+            playerO.setCount(0);
+            playerX.setCount(0);
+            counter.setText("X  " + playerX.getCount()
+                    + ":" + playerO.getCount() + "  O");
+            vsWho.setText("player vs. computer easy (LMB for X)");
+            GameReset.gameReset(new EasyComputer());
+        });
+    }
 
-        counter.setText("X  " + playerX.getCount() + ":" + playerO.getCount() + "  O");
-        counter.setTextFill(Color.BLACK);
-        counter.setFont(new Font("Arial", 20));
-        counter.layoutXProperty().bind(root.widthProperty().subtract(counter.widthProperty()).divide(2));
-        counter.setLayoutY(640);
-
-        vsWho.setText("player vs. computer easy (LMB for X)");
+    private static void startLabel(Label vsWho, String value, Pane root, int value1) {
+        vsWho.setText(value);
         vsWho.setTextFill(Color.BLACK);
         vsWho.setFont(new Font("Arial", 20));
         vsWho.layoutXProperty().bind(root.widthProperty().subtract(vsWho.widthProperty()).divide(2));
-        vsWho.setLayoutY(670);
+        vsWho.setLayoutY(value1);
+    }
 
-        root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));
-        root.getChildren().addAll(quit, vsPlay, mediumLevel, easyLevel, playAgain, label, counter, vsWho);
-        return root;
+    private static void counting(Pane root) {
+        startLabel(counter, "X  " + playerX.getCount() + ":" + playerO.getCount() + "  O", root, 640);
     }
 
     @Override

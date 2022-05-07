@@ -47,6 +47,11 @@ public class Tile extends StackPane {
             rectangle.setFill(null);
         }
 
+        click(rectangle);
+    }
+
+    private void click(Rectangle rectangle) {
+
         setOnMouseClicked(action -> {
             if (!TicTacToe.possibleMove) {
                 return;
@@ -56,13 +61,7 @@ public class Tile extends StackPane {
                     return;
                 }
                 if (action.getButton() == MouseButton.PRIMARY) {
-                    if (!TicTacToe.turnX || getFieldValue() == FieldValue.CIRCLE || getFieldValue() == FieldValue.CROSS) {
-                        return;
-                    }
-                    setFieldValue(FieldValue.CROSS);
-                    rectangle.setFill(new ImagePattern(cross));
-                    TicTacToe.turnX = false;
-                    checkState();
+                    if (Rectangle(rectangle)) return;
                     if (!TicTacToe.possibleMove) {
                         return;
                     }
@@ -82,13 +81,7 @@ public class Tile extends StackPane {
 
             if (!TicTacToe.vsComputer) {
                 if (action.getButton() == MouseButton.PRIMARY) {
-                    if (!TicTacToe.turnX || getFieldValue() == FieldValue.CIRCLE || getFieldValue() == FieldValue.CROSS) {
-                        return;
-                    }
-                    setFieldValue(FieldValue.CROSS);
-                    rectangle.setFill(new ImagePattern(cross));
-                    TicTacToe.turnX = false;
-                    checkState();
+                    if (Rectangle(rectangle)) return;
                 }
                 if (action.getButton() == MouseButton.SECONDARY) {
                     if (TicTacToe.turnX || getFieldValue() == FieldValue.CROSS || getFieldValue() == FieldValue.CIRCLE) {
@@ -101,6 +94,17 @@ public class Tile extends StackPane {
                 }
             }
         });
+    }
+
+    private boolean Rectangle(Rectangle rectangle) {
+        if (!TicTacToe.turnX || getFieldValue() == FieldValue.CIRCLE || getFieldValue() == FieldValue.CROSS) {
+            return true;
+        }
+        setFieldValue(FieldValue.CROSS);
+        rectangle.setFill(new ImagePattern(cross));
+        TicTacToe.turnX = false;
+        checkState();
+        return false;
     }
 
     public void checkState() {
